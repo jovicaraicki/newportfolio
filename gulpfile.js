@@ -4,10 +4,10 @@ const minifyCSS = require('gulp-clean-css')
 const autoprefixer = require('gulp-autoprefixer')
 const gp_concat = require('gulp-concat')
 const gp_rename = require('gulp-rename')
-const gp_uglify = require('gulp-uglify')
-const clean = require('gulp-clean')
-const to5 = require('gulp-6to5')
-const path = require('path')
+// const gp_uglify = require('gulp-uglify')
+// const clean = require('gulp-clean')
+// const to5 = require('gulp-6to5')
+// const path = require('path')
 
 // Add CSS files
 gulp.task('css', function(){
@@ -46,30 +46,12 @@ gulp.task('vendor', function(){
                 './public/js/compiled.js'
             ]
         )
-        // .pipe(gp_concat('vendor.min.js'))
-        // .pipe(gulp.dest('./public/dist/js/'))
         .pipe(gp_rename('vendor.min.js'))
-        // .pipe(gp_uglify())
         .pipe(gulp.dest('./public/dist/js/'))
 });
 
 
 gulp.task('js', ['vendor'], function(){})
 
-// gulp.task('es6-es5', function(){
-//     return gulp.src([
-//                 './src/*/**.js',
-//                 './src/*/*/**.js'
-//             ]
-//         )
-//         .pipe(to5())
-//         .pipe(gulp.dest('./es5/'))
-// });
-//
-// gulp.task('watch', function() {
-//     gulp.watch(['./src/*/**.js', './src/*/*/**.js', './public/js/**.js'], ['es6-es5'])
-// })
-
-
 gulp.task('prod', ['style', 'js'], function(){})
-gulp.task('default', ['js', 'watch'], function(){})
+gulp.task('default', ['style', 'js'], function(){})
